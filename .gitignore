@@ -5,6 +5,11 @@
 *.userosscache
 *.sln.docstates
 
+# Do not track sensitive app settings
+appsettings.json
+appsettings.Development.json
+
+
 # Build results
 bin/
 obj/
