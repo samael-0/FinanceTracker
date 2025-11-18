@@ -6,8 +6,8 @@
 }
 @theme {
   --font-poppins: "Poppins", sans-serif;
-  --color-primary: #299d91;
-  --color-secondary: #525256;
+  --color-pcolor: #299d91;
+  --color-scolor: #525256;
 }
 @custom-variant dark (&:is(.dark *));
 

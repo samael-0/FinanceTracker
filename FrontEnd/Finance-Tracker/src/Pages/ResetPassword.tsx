@@ -1,69 +1,14 @@
-import React, { useState } from "react";
-
-import Buttonn from "../Component/Button";
+import Buttonn from "@/Component/Button";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
-import { toast } from "sonner";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 
-export default function Login() {
-  // type FormFields = {
-  //   email: string;
-  //   password: string;
-  // };
+export default function ResetPassword() {
+  const [email, setEmail] = useState<string>("");
 
-  // const {register} = useForm<FormFields>();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [token, setToken] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      const response = await fetch("https://localhost:7055/api/User/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-
-      if (!response.ok) {
-        setError("Invalid username or password");
-        return;
-      }
-
-      const data = await response.json();
-      const token = data.token;
-
-      // Save JWT token
-      setToken(token);
-
-      if (token) {
-        toast("Login Successfull", {
-          description: "",
-          action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
-          },
-        });
-      } else {
-        toast("Failed");
-      }
-    } catch (err) {
-      console.error(err);
-      setError(error);
-    }
+  const handleSubmit = (e: React.FormEvent) => {
+    return alert("hello");
   };
-
-  console.log(token);
 
   return (
     <div className="bg-white h-screen flex items-center justify-center font-light text-[14px]  ">
@@ -74,6 +19,9 @@ export default function Login() {
         </div>
         <form onSubmit={handleSubmit} autoComplete="">
           <div className="flex flex-col gap-3 bg-">
+            <div>
+              <p>Enter your email address to get the password reset link </p>
+            </div>
             <div className="relative">
               <input
                 type="text"
@@ -92,28 +40,11 @@ export default function Login() {
               </label>
             </div>
 
-            <div className="relative">
-              <input
-                type="text"
-                name=""
-                id="pass"
-                placeholder=""
-                onChange={(e) => setPassword(e.target.value)}
-                className="border-2  border-black bg-white  rounded-[0.2rem] w-full peer  h-12 p-1"
-              />
-
-              <label
-                htmlFor="pass"
-                className="absolute left-1  transition-all duration-150 ease-in-out -top-3 peer-focus:-top-3 peer-placeholder-shown:top-4 text-[15px] px-2 rounded-md bg-white "
-              >
-                Password
-              </label>
-            </div>
-            <div>
-              <input type="checkbox" name="" id="" />
-              <label htmlFor=""> Remember Me</label>
-            </div>
-            <p className="text-center m-4">Forgot Password?</p>
+            <p className="text-center m-4">
+              <a href="" className="text-blue-900">
+                Sign In?
+              </a>
+            </p>
             <div className="flex justify-center  shadow-2xs  hover:scale-103 h-10  ">
               {/* <button className="bg-blue-500 hover:bg-blue-600  hover:cursor-pointer w-full hover:scale-103">
                   SUBMIT
