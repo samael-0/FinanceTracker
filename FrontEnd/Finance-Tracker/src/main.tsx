@@ -5,8 +5,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Pages/Login.tsx";
 import Signup from "./Pages/Signup.tsx";
 import ResetPassword from "./Pages/ResetPassword.tsx";
+import Sidebar from "./Component/Sidebar.tsx";
+import App from "./App.tsx";
 
 const route = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      // { path: "/", element: <Homepage /> },
+      { path: "/product", element: <>h</> },
+      { path: "/l", element: <Login /> },
+    ],
+  },
   {
     path: "/login",
     element: <Login />,
