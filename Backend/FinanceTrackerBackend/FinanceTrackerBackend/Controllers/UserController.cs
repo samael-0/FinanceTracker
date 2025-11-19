@@ -68,7 +68,7 @@ namespace FinanceTrackerBackend.Controllers
                 }
                 var token = GenerateToken(user);
                 Console.WriteLine(token);
-                return Ok(token);
+                return Ok(new { token });
             }
             catch(Exception ex)
             {
