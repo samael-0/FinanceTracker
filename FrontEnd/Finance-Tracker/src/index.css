@@ -8,6 +8,7 @@
   --font-poppins: "Poppins", sans-serif;
   --color-pcolor: #299d91;
   --color-scolor: #525256;
+  --color-bgcolor: #e8e8e8;
 }
 @custom-variant dark (&:is(.dark *));
 

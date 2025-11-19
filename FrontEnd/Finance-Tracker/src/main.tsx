@@ -7,6 +7,7 @@ import Signup from "./Pages/Signup.tsx";
 import ResetPassword from "./Pages/ResetPassword.tsx";
 import Sidebar from "./Component/Sidebar.tsx";
 import App from "./App.tsx";
+import Header from "./Component/Header.tsx";
 
 const route = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const route = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/header",
+    element: <Header />,
   },
 
   {
