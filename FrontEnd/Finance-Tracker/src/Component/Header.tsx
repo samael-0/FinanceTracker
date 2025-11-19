@@ -8,11 +8,13 @@ import { IoIosNotifications } from "react-icons/io";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CiSearch } from "react-icons/ci";
+import { ModeToggle } from "@/components/mode-toggle";
 export default function Header() {
   return (
-    <div className="flex justify-between  h-17 bg-bgcolor p-2 px-4">
+    <div className="flex justify-between  h-17 bg-bgcolor dark:bg-black p-2 px-4">
       <div className="flex items-center justify-between  gap-4 px-2 ">
-        <div className="font-bold">Hello Shrawan</div>
+        <ModeToggle />
+        <div className="font-bold">Hello albert/sajan</div>
         <p className="text-scolor font-light text-[14px]">{`>> ${new Date().toLocaleDateString(
           "en-US",
           {

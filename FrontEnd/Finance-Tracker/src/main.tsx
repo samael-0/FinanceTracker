@@ -5,9 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Pages/Login.tsx";
 import Signup from "./Pages/Signup.tsx";
 import ResetPassword from "./Pages/ResetPassword.tsx";
-import Sidebar from "./Component/Sidebar.tsx";
+
 import App from "./App.tsx";
 import Header from "./Component/Header.tsx";
+import Homepage from "./Pages/Homepage.tsx";
 
 const route = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const route = createBrowserRouter([
     element: <App />,
     children: [
       // { path: "/", element: <Homepage /> },
-      { path: "/product", element: <>h</> },
+      { path: "/", element: <Homepage /> },
       { path: "/l", element: <Login /> },
     ],
   },
