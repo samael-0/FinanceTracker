@@ -3,6 +3,7 @@
 @import "tw-animate-css";
 :root {
   font-family: poppins;
+  background-color: #e8e8e8;
 }
 @theme {
   --font-poppins: "Poppins", sans-serif;

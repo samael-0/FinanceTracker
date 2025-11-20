@@ -5,6 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+import { RadialBarChart, PolarRadiusAxis, Label, RadialBar } from "recharts";
 
 export default function Login() {
   // type FormFields = {
@@ -14,23 +20,23 @@ export default function Login() {
 
   // const {register} = useForm<FormFields>();
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
     try {
-      const response = await fetch("https://localhost:7055/api/User/login", {
+      const response = await fetch("https://localhost:7160/api/Auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
+          username,
           password,
         }),
       });
@@ -41,10 +47,12 @@ export default function Login() {
       }
 
       const data = await response.json();
-      const token = data.token;
+      console.log("data", data);
+      const token = data.result;
 
       // Save JWT token
       setToken(token);
+      console.log("Token:", token);
 
       if (token) {
         toast("Login Successfull", {
@@ -80,7 +88,7 @@ export default function Login() {
                 name=""
                 id="user"
                 placeholder=""
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 className="border-2  border-black bg-white  rounded-[0.2rem] w-full peer  h-12 p-1"
               />
 

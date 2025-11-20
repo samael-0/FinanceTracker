@@ -13,15 +13,15 @@ export default function Card({
   footer,
 }: CardProps) {
   return (
-    <div className="flex flex-col border-2 p-4 rounded-md shadow-md bg-white dark:bg-gray-800 gap-3">
-      <div className="flex flex-col border-2 p-1">
+    <div className="h-full flex flex-col p-4 rounded-md shadow-md bg-white dark:bg-gray-800 gap-3">
+      <div className="flex flex-col  p-1">
         <div className="flex justify-between p-1 ">
           <div className="font-bold">{title}</div>
           <div>{description}</div>
         </div>
-        <div className="border-2">{content}</div>
+        <div className="">{content}</div>
       </div>
-      <div className="border-2 p-1">{footer}</div>
+      <div className=" p-1 flex justify-center">{footer}</div>
     </div>
   );
 }
