@@ -16,7 +16,7 @@ import { FaRegCreditCard } from "react-icons/fa6";
 
 export default function Homepage() {
   return (
-    <div className="h-full bg-bgcolor">
+    <div className="h-full flex flex-col bg-bgcolor dark:bg-black ">
       <div className="flex gap-2 justify-between  m-2 p-2 ">
         <div className="flex flex-col  p-1 w-full   shadow-xl">
           <p className="font-light">Total Balance</p>
@@ -25,25 +25,29 @@ export default function Homepage() {
               <CarouselItem className="h-full">
                 <Card
                   title="2000$"
-                  description=<a className="text-blue-500 font-light text-xs">
-                    View Details
-                  </a>
-                  content=<div className="  flex h-full  bg-pcolor rounded-xl p-4 justify-between ">
-                    <div className="flex flex-col">
-                      <div className="font-light text-xs">Account Type</div>
-                      <div className="font-bold">NIC ASIA</div>
-                      <div className="text-xs font-light">
-                        **** **** **** ****
-                      </div>
-                    </div>
-                    <div>
-                      {" "}
+                  description={
+                    <a className="text-blue-500 font-light text-xs">
+                      View Details
+                    </a>
+                  }
+                  content={
+                    <div className="  flex h-full  bg-pcolor rounded-xl p-4 justify-between ">
                       <div className="flex flex-col">
-                        <FaRegCreditCard />
+                        <div className="font-light text-xs">Account Type</div>
+                        <div className="font-bold">NIC ASIA</div>
+                        <div className="text-xs font-light">
+                          **** **** **** ****
+                        </div>
+                      </div>
+                      <div>
+                        {" "}
+                        <div className="flex flex-col">
+                          <FaRegCreditCard />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  footer=<div className="flex justify-between"></div>
+                  }
+                  footer={<div className="flex justify-between"></div>}
                 />
               </CarouselItem>
               <CarouselItem>...</CarouselItem>
@@ -107,36 +111,40 @@ export default function Homepage() {
             <CarouselNext className="border-none p-0 right-4 top-auto -bottom-2" />
           </Carousel>
         </div>
+
+        {/* hell */}
         <div className="flex flex-col  p-1 w-full  shadow-xl">
-          {/* <ChartContainer config={chartConfig}>
-            <BarChart accessibilityLayer data={chartData}>
-              <CartesianGrid vertical={false} />
-              <XAxis
-                dataKey="month"
-                tickLine={false}
-                tickMargin={10}
-                axisLine={false}
-                tickFormatter={(value) => value.slice(0, 3)}
-              />
-              <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-              <ChartLegend content={<ChartLegendContent />} />
-              <Bar
-                dataKey="desktop"
-                stackId="a"
-                fill="var(--color-desktop)"
-                radius={[0, 0, 4, 4]}
-              />
-              <Bar
-                dataKey="mobile"
-                stackId="a"
-                fill="var(--color-mobile)"
-                radius={[4, 4, 0, 0]}
-              />
-            </BarChart>
-          </ChartContainer> */}
-          1
+          <p className="font-light">Total Balance</p>
+          <Card
+            title={"Bills"}
+            description={
+              <a className="text-blue-500 font-light text-xs">View Details</a>
+            }
+            content={
+              <div className="flex flex-col">
+                <div className="flex w-full py-1 justify-between h-20 border-b-2 mb-2">
+                  <div className="border-2 bg-bgcolor dark:bg-black rounded-md p-2">
+                    <p className="font-bold">May</p>
+                    <p className="font-bold text-center">15</p>
+                  </div>
+                  <div className="">
+                    <p className="font-bold">Figma</p>
+                    <p className="text-sm">Figma-Monthly</p>
+                    <p className="font-light text-[0.7rem]">
+                      Last-Charge:14 May,2022
+                    </p>
+                  </div>
+                  <div className="border-2 rounded-md h-7 p-1 font-bold">
+                    $150
+                  </div>
+                </div>
+              </div>
+            }
+          />
         </div>
       </div>
+
+      <div className="border-0"></div>
     </div>
   );
 }

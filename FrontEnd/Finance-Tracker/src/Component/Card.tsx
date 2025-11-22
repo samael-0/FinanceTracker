@@ -3,7 +3,7 @@ interface CardProps {
   title: string;
   content: string | JSX.Element;
   description?: string | JSX.Element;
-  footer: string | JSX.Element;
+  footer?: string | JSX.Element;
 }
 
 export default function Card({
