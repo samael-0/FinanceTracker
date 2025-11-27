@@ -8,16 +8,66 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 
-import { Pie, PieChart, Cell } from "recharts";
+import {
+  Pie,
+  PieChart,
+  Cell,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  Bar,
+} from "recharts";
 
-const data = [{ value: 527.65 }, { value: 602.35 }];
+const totalGoal = 1000;
+const completed = 900;
+
+const data = [
+  { name: "Completed", value: completed },
+  { name: "Remaining", value: totalGoal - completed },
+];
 
 import { FaRegCreditCard } from "react-icons/fa6";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from "@/components/ui/chart";
+import {
+  Caard,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { TrendingUp } from "lucide-react";
+
+export const description = "A multiple bar chart";
+const chartData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+];
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "var(--chart-1)",
+  },
+  mobile: {
+    label: "Mobile",
+    color: "var(--chart-2)",
+  },
+} satisfies ChartConfig;
 
 export default function Homepage() {
   return (
-    <div className="h-full flex flex-col bg-bgcolor dark:bg-black ">
-      <div className="flex gap-2 justify-between  m-2 p-2 ">
+    <div className="  flex flex-col  bg-bgcolor dark:bg-black ">
+      <div className="flex  justify-between  m-2 p-2 ">
         <div className="flex flex-col  p-1 w-full   shadow-xl">
           <p className="font-light">Total Balance</p>
           <Carousel className="h-full ">
@@ -92,6 +142,7 @@ export default function Homepage() {
                             labelLine={false}
                             blendStroke
                             isAnimationActive={false}
+                            cy={"50%"}
                           >
                             <Cell fill="#000" />
                             <Cell fill="#eaeaea" />
@@ -144,7 +195,79 @@ export default function Homepage() {
         </div>
       </div>
 
-      <div className="border-0"></div>
+      <div className=" flex   px-3  gap-2 ">
+        <div className=" border-2 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4">
+          <Tabs defaultValue="account" className="w-[400px]">
+            <TabsList>
+              <TabsTrigger value="account">All</TabsTrigger>
+              <TabsTrigger value="revenue">Revenue</TabsTrigger>
+              <TabsTrigger value="expenses">Expenses</TabsTrigger>
+            </TabsList>
+            <TabsContent value="account" className="justify-between">
+              <div className="flex w-full py-1 justify-between h-15 border-b-2 p-7">
+                <div>svg</div>
+                <div className="font-bold">GTR 5</div>
+                <div className="font-bold">$1600</div>
+              </div>
+            </TabsContent>
+            <TabsContent value="revenue">
+              <div className="flex w-full py-1 justify-between h-15 border-b-2 p-7">
+                <div>svg</div>
+                <div className="font-bold">Salary</div>
+                <div className="font-bold">$1600</div>
+              </div>
+            </TabsContent>
+            <TabsContent value="expenses">
+              <div className="flex w-full py-1 justify-between h-15 border-b-2 p-7">
+                <div>svg</div>
+                <div className="font-bold">GTR 5</div>
+                <div className="font-bold">$1600</div>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+        <div className="w-full">
+          <Caard>
+            <CardHeader>
+              <CardTitle>Bar Chart - Multiple</CardTitle>
+              <CardDescription>January - June 2024</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer config={chartConfig}>
+                <BarChart accessibilityLayer data={chartData}>
+                  <CartesianGrid vertical={false} />
+                  <XAxis
+                    dataKey="month"
+                    tickLine={false}
+                    tickMargin={10}
+                    axisLine={false}
+                    tickFormatter={(value) => value.slice(0, 3)}
+                  />
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent indicator="dashed" />}
+                  />
+                  <Bar
+                    dataKey="desktop"
+                    fill="var(--color-desktop)"
+                    radius={4}
+                  />
+                  <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+                </BarChart>
+              </ChartContainer>
+            </CardContent>
+            <CardFooter className="flex-col items-start gap-2 text-sm">
+              <div className="flex gap-2 leading-none font-medium">
+                Trending up by 5.2% this month{" "}
+                <TrendingUp className="h-4 w-4" />
+              </div>
+              <div className="text-muted-foreground leading-none">
+                Showing total visitors for the last 6 months
+              </div>
+            </CardFooter>
+          </Caard>
+        </div>
+      </div>
     </div>
   );
 }

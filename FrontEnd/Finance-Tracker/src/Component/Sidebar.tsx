@@ -39,8 +39,8 @@ export default function Sidebar() {
   console.log(location.pathname);
 
   return (
-    <div className=" h-full w-50 bg-black text-white ">
-      <div className="w-50 h-screen flex flex-col px-4 py-7 justify-between">
+    <div className=" h-screen w-50 bg-black  text-white ">
+      <div className="w-50 h-full  flex flex-col px-4 py-7 justify-between ">
         <div className="flex-col gap-7 flex">
           <div className="text-center font-bold">FinanceTracker.IO</div>
           <div className="">

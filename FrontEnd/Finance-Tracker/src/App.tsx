@@ -7,12 +7,14 @@ import { ThemeProvider } from "./components/theme-provider";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="flex">
+      <div className="flex h-screen ">
         <Sidebar />
-        <div className=" flex-1">
+        <div className=" flex flex-col w-full">
           <Header />
 
-          <Outlet />
+          <div className="flex-1 overflow-y-auto no-scrollbar ">
+            <Outlet />
+          </div>
         </div>
       </div>
     </ThemeProvider>
