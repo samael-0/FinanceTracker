@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 export default function Sidebar() {
@@ -8,12 +7,12 @@ export default function Sidebar() {
       labelName: "Homepage",
     },
     {
-      url: "/bal",
-      labelName: "Balances",
+      url: "/transactions",
+      labelName: "Transactions",
     },
     {
-      url: "/asd",
-      labelName: "Transactions",
+      url: "/balances",
+      labelName: "balances",
     },
 
     {

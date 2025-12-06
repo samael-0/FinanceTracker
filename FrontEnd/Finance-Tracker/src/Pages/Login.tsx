@@ -23,6 +23,7 @@ export default function Login() {
   // const [token, setToken] = useState([]);
 
   const token = useTokenStore((state) => state.token);
+  console.log("token store", token);
   const setToken = useTokenStore((state) => state.setToken);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,7 +52,7 @@ export default function Login() {
 
       const data = await response.json();
       // console.log("data", data);
-      const token = data;
+      const token = data.token;
 
       // Save JWT token
       // setToken(token);

@@ -9,6 +9,7 @@ import ResetPassword from "./Pages/ResetPassword.tsx";
 import App from "./App.tsx";
 import Header from "./Component/Header.tsx";
 import Homepage from "./Pages/Homepage.tsx";
+import Transactions from "./Pages/Transactions.tsx";
 
 const route = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const route = createBrowserRouter([
       // { path: "/", element: <Homepage /> },
       { path: "/", element: <Homepage /> },
       { path: "/l", element: <Login /> },
+      { path: "/transactions", element: <Transactions /> },
     ],
   },
   {
