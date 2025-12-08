@@ -6,7 +6,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import React from "react";
+
 import { FaRegCreditCard } from "react-icons/fa6";
 
 export default function Homepage() {

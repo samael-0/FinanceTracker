@@ -12,7 +12,7 @@ export default function Sidebar() {
       labelName: "Balances",
     },
     {
-      url: "/asd",
+      url: "/transactions",
       labelName: "Transactions",
     },
 
