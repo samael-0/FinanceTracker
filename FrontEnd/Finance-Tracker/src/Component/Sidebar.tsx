@@ -10,24 +10,21 @@ export default function Sidebar() {
       url: "/transactions",
       labelName: "Transactions",
     },
-    {
-      url: "/balances",
-      labelName: "balances",
-    },
-
-    {
-      url: "/asd",
-      labelName: "Bills",
-    },
-
-    {
-      url: "/asd",
+    // {
+    //   url: "/balances",
+    //   labelName: "balances",
+    // },
+{
+      url: "/Expenses",
       labelName: "Expenses",
     },
     {
-      url: "/asd",
+      url: "/goals",
       labelName: "Goals",
     },
+
+    
+  
     {
       url: "/asd",
       labelName: "Settings",

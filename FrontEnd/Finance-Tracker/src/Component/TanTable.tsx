@@ -12,14 +12,14 @@ export default function SimpleTable({ data, columns }) {
   });
 
   return (
-    <table className="min-w-full border border-gray-300 border-collapse ">
+    <table className="min-w-full bg-white dark:bg-black border border-gray-300 border-collapse ">
       <thead>
         {table.getHeaderGroups().map((hg) => (
           <tr key={hg.id}>
             {hg.headers.map((header) => (
               <th
                 key={header.id}
-                className="border relative border-gray-300 px-4 py-2 text-left bg-gray-100 p-2"
+                className="border relative  border-gray-300 px-4 py-2 text-left h-14 p-2"
               >
                 {flexRender(
                   header.column.columnDef.header,
