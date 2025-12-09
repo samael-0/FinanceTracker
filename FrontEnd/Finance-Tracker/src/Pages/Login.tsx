@@ -4,13 +4,9 @@ import Buttonn from "../Component/Button";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { useForm } from "react-hook-form";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { RadialBarChart, PolarRadiusAxis, Label, RadialBar } from "recharts";
+
+import { useTokenStore } from "@/store/tokenstore";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   // type FormFields = {
@@ -23,14 +19,22 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [token, setToken] = useState([]);
+  const navigate = useNavigate();
+  // const [token, setToken] = useState([]);
+
+  const token = useTokenStore((state) => state.token);
+  console.log("token store", token);
+  const setToken = useTokenStore((state) => state.setToken);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    const baseurl: string = import.meta.env.VITE_BACKEND_URL;
+    console.log("baseurl", baseurl);
+    console.log("link:", `${baseurl}/api/Auth/login`);
 
     try {
-      const response = await fetch("https://localhost:7160/api/Auth/login", {
+      const response = await fetch(`${baseurl}/api/User/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,10 +51,11 @@ export default function Login() {
       }
 
       const data = await response.json();
-      console.log("data", data);
-      const token = data.result;
+      // console.log("data", data);
+      const token = data.token;
 
       // Save JWT token
+      // setToken(token);
       setToken(token);
       console.log("Token:", token);
 
@@ -62,6 +67,7 @@ export default function Login() {
             onClick: () => console.log("Undo"),
           },
         });
+        navigate("/");
       } else {
         toast("Failed");
       }
@@ -139,7 +145,7 @@ export default function Login() {
         <Button variant="secondary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+            // xmlns:xlink="http://www.w3.org/1999/xlink"
             width="800px"
             height="800px"
             viewBox="-0.5 0 48 48"

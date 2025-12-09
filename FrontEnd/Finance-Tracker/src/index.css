@@ -3,7 +3,7 @@
 @import "tw-animate-css";
 :root {
   font-family: poppins;
-  background-color: #e8e8e8;
+  /* background-color: #e8e8e8; */
 }
 @theme {
   --font-poppins: "Poppins", sans-serif;
@@ -12,6 +12,16 @@
   --color-bgcolor: #e8e8e8;
 }
 @custom-variant dark (&:is(.dark *));
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

@@ -11,7 +11,7 @@ import { CiSearch } from "react-icons/ci";
 import { ModeToggle } from "@/components/mode-toggle";
 export default function Header() {
   return (
-    <div className="flex justify-between  h-17 bg-bgcolor dark:bg-black p-2 px-4">
+    <div className="flex justify-between  h-17 bg-bgcolor border-b-2 border-scolor dark:bg-black ">
       <div className="flex items-center justify-between  gap-4 px-2 ">
         <ModeToggle />
         <div className="font-bold">Hello albert/sajan</div>

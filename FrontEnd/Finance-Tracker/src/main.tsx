@@ -10,6 +10,8 @@ import App from "./App.tsx";
 import Header from "./Component/Header.tsx";
 import Homepage from "./Pages/Homepage.tsx";
 import Transactions from "./Pages/Transactions.tsx";
+import Goal from "./Pages/Goal.tsx";
+import Setting from "./Pages/Setting.tsx";
 
 const route = createBrowserRouter([
   {
@@ -18,8 +20,9 @@ const route = createBrowserRouter([
     children: [
       // { path: "/", element: <Homepage /> },
       { path: "/", element: <Homepage /> },
-      // { path: "/l", element: <Login /> },
       { path: "/transactions", element: <Transactions /> },
+      { path: "/goals", element: <Goal /> },
+      { path: "/settings", element: <Setting /> },
     ],
   },
   {
