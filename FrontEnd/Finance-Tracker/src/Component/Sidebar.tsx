@@ -25,11 +25,11 @@ export default function Sidebar() {
       labelName: "Expenses",
     },
     {
-      url: "/asd",
+      url: "/goals",
       labelName: "Goals",
     },
     {
-      url: "/asd",
+      url: "/settings",
       labelName: "Settings",
     },
   ];
