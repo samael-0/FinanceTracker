@@ -26,7 +26,7 @@ export default function Sidebar() {
     
   
     {
-      url: "/asd",
+      url: "/settings",
       labelName: "Settings",
     },
   ];
