@@ -12,6 +12,7 @@ import Homepage from "./Pages/Homepage.tsx";
 import Transactions from "./Pages/Transactions.tsx";
 import Goal from "./Pages/Goal.tsx";
 import Setting from "./Pages/Setting.tsx";
+import UpcommingIPO from "./Component/UpcommingIPO.tsx";
 
 const route = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const route = createBrowserRouter([
     children: [
       // { path: "/", element: <Homepage /> },
       { path: "/", element: <Homepage /> },
+      { path: "/ipo", element: <UpcommingIPO /> },
       { path: "/transactions", element: <Transactions /> },
       { path: "/goals", element: <Goal /> },
       { path: "/settings", element: <Setting /> },
