@@ -14,7 +14,7 @@ export default function Sidebar() {
     //   url: "/balances",
     //   labelName: "balances",
     // },
-{
+    {
       url: "/Expenses",
       labelName: "Expenses",
     },
@@ -23,8 +23,6 @@ export default function Sidebar() {
       labelName: "Goals",
     },
 
-    
-  
     {
       url: "/settings",
       labelName: "Settings",
