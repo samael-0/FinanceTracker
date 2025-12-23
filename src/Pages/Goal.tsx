@@ -1,213 +1,180 @@
-import { TrendingDown, TrendingUp } from "lucide-react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  Cell,
-  Pie,
-  PieChart,
-  XAxis,
-} from "recharts";
-import { Button } from "@/components/ui/button";
 import {
   Caard,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ChartContainer, type ChartConfig } from "@/components/ui/chart";
+
+import { Progress } from "@/components/ui/progress";
+import React from "react";
 import {
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+  Label,
+  Legend,
+  PolarGrid,
+  PolarRadiusAxis,
+  RadialBar,
+  RadialBarChart,
+} from "recharts";
 
-// --------------------
-// Constants
-// --------------------
-const CATEGORY_GOALS = [
-  { cardName: "Housing", amt: "$250" },
-  { cardName: "Food", amt: "$250" },
-  { cardName: "Transportation", amt: "$250" },
+interface goalData {
+  fundName: string;
+  saved: string;
+  target: string;
+  remaining: string;
+}
+const chartData = [
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
 ];
 
-const AREA_CHART_DATA = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
-
-const CHART_CONFIG = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--chart-1)",
-    icon: TrendingDown,
+const chartConfig = {
+  visitors: {
+    label: "Visitors",
   },
-  mobile: {
-    label: "Mobile",
+  safari: {
+    label: "Safari",
     color: "var(--chart-2)",
-    icon: TrendingUp,
   },
+} satisfies ChartConfig;
+const style = {
+  top: "50%",
+  right: 0,
+  transform: "translate(0, -50%)",
+  lineHeight: "24px",
 };
 
-// --------------------
-// Component
-// --------------------
-export default function Goal() {
-  const totalGoal = 1000;
-  const completed = 900;
+const data: goalData[] = [
+  {
+    fundName: "Emergency Fund",
+    saved: "$6500",
+    target: "$10000",
+    remaining: "$3500",
+  },
+  {
+    fundName: "Vaccation to Europe",
+    saved: "$6500",
+    target: "$10000",
+    remaining: "$3500",
+  },
+];
 
+function Goal() {
   return (
-    <div className="flex flex-col h-full bg-white p-2 gap-4">
-      {/* Header */}
-      <div className="flex justify-between px-2">
-        <p className="text-2xl font-light text-gray-400">Goals</p>
-        <Button variant="secondary">Add Goal</Button>
-      </div>
+    <div className="flex flex-col bg-bgcolor h-full  px-6 py-2 border-7 ">
+      <h1 className="font-semibold text-3xl">Financial Goal</h1>
+      <div className=" bg-white shadow-xs flex flex-col   my-2 px-2 py-2 gap-5 rounded-xl">
+        <p>Overall Progress</p>
+        <div className="flex justify-between">
+          <span>
+            <p className="font-semimedium text-3xl">$1400</p>
+            <p className="font-extralight text-sm">of $3200</p>
+          </span>
 
-      {/* Main section */}
-      <div className="flex justify-between gap-4">
-        {/* Saving Goal Card */}
-        <div className="flex flex-col gap-4 bg-white dark:bg-black dark:text-white p-4 shadow-lg rounded-xl w-[350px]">
-          <div className="flex justify-between items-center">
-            <b>Saving Goal</b>
-            <select>
-              <option value="jan">Jan</option>
-              <option value="feb">Feb</option>
-            </select>
-          </div>
-
-          <div className="flex gap-8 items-center">
-            <div className="flex flex-col gap-5">
-              <div>
-                <p className="text-xs text-gray-500">Target achieved</p>
-                <p className="font-bold text-xl">$12500</p>
-              </div>
-
-              <div>
-                <p className="text-xs text-gray-500">This month target</p>
-                <p className="font-bold text-xl">$12500</p>
-              </div>
-            </div>
-
-            <PieChart width={200} height={200}>
-              <Pie
-                startAngle={180}
-                endAngle={0}
-                innerRadius="55%"
-                cy="50%"
-                data={[
-                  { name: "Completed", value: completed },
-                  { name: "Remaining", value: totalGoal - completed },
-                ]}
-                dataKey="value"
-                labelLine={false}
-                isAnimationActive={false}
-              >
-                <Cell fill="#000" />
-                <Cell fill="#eaeaea" />
-              </Pie>
-            </PieChart>
-          </div>
-
-          <div className="mx-auto">
-            <Button variant="secondary">Adjust Goal</Button>
-          </div>
+          <span>
+            <p className="font-semimedium text-3xl">14%</p>
+            <p className="font-extralight text-sm">of $3200</p>
+          </span>
         </div>
-
-        {/* Area Chart Card */}
-        <Caard className="flex-1">
-          <CardHeader>
-            <CardTitle>Area Chart - Icons</CardTitle>
-            <CardDescription>
-              Showing total visitors for the last 6 months
-            </CardDescription>
-          </CardHeader>
-
-          <CardContent>
-            <ChartContainer
-              className="max-h-[200px] w-full"
-              config={CHART_CONFIG}
-            >
-              <AreaChart
-                data={AREA_CHART_DATA}
-                margin={{ left: 12, right: 12 }}
-              >
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="month"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={8}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="line" />}
-                />
-
-                <Area
-                  dataKey="mobile"
-                  type="natural"
-                  fill="var(--color-mobile)"
-                  fillOpacity={0.4}
-                  stroke="var(--color-mobile)"
-                  stackId="a"
-                />
-                <Area
-                  dataKey="desktop"
-                  type="natural"
-                  fill="var(--color-desktop)"
-                  fillOpacity={0.4}
-                  stroke="var(--color-desktop)"
-                  stackId="a"
-                />
-
-                <ChartLegend content={<ChartLegendContent />} />
-              </AreaChart>
-            </ChartContainer>
-          </CardContent>
-
-          <CardFooter>
-            <div className="flex items-start gap-2 text-sm">
-              <div className="grid gap-2">
-                <div className="flex items-center gap-2 font-medium">
-                  Trending up by 5.2% this month{" "}
-                  <TrendingUp className="h-4 w-4" />
-                </div>
-                <div className="text-muted-foreground">January - June 2024</div>
-              </div>
-            </div>
-          </CardFooter>
-        </Caard>
+        <div className="">
+          <Progress className="w-full h-4" value={33} />
+        </div>
       </div>
-
-      {/* Category Goals */}
-      <p className="text-2xl font-light text-gray-400">
-        Expenses Goals by Category
-      </p>
-
-      <div className="grid grid-cols-3 gap-3">
-        {CATEGORY_GOALS.map((value, index) => (
-          <div
-            key={index}
-            className="flex items-center bg-white dark:bg-black dark:text-white gap-3 p-4 rounded-xl shadow-xl justify-between"
-          >
-            <img src="" alt="Logo" />
-            <div>
-              <p>{value.cardName}</p>
-              <p>{value.amt}</p>
-            </div>
-            <Button variant="secondary">Adjust</Button>
-          </div>
+      <div className="flex bg-white p-2  rounded-xl border-2 border-red-900">
+        {data.map((goal) => (
+          <Caard className="">
+            <CardHeader>
+              <CardTitle>{goal.fundName}</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+              {/* <CardAction>Card Action</CardAction> */}
+            </CardHeader>
+            <CardContent className="  w-full">
+              <div className="flex gap-4 items-center">
+                <ChartContainer
+                  config={chartConfig}
+                  className="mx-auto aspect-square max-h-[250px] h-full"
+                >
+                  <RadialBarChart
+                    data={chartData}
+                    startAngle={0}
+                    endAngle={250}
+                    innerRadius={80}
+                    outerRadius={110}
+                  >
+                    <PolarGrid
+                      gridType="circle"
+                      radialLines={false}
+                      stroke="none"
+                      className="first:fill-muted last:fill-background"
+                      polarRadius={[86, 74]}
+                    />
+                    <RadialBar
+                      dataKey="visitors"
+                      background
+                      cornerRadius={10}
+                    />
+                    <PolarRadiusAxis
+                      tick={false}
+                      tickLine={false}
+                      axisLine={false}
+                    >
+                      <Label
+                        content={({ viewBox }) => {
+                          if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                            return (
+                              <text
+                                x={viewBox.cx}
+                                y={viewBox.cy}
+                                textAnchor="middle"
+                                dominantBaseline="middle"
+                              >
+                                <tspan
+                                  x={viewBox.cx}
+                                  y={viewBox.cy}
+                                  className="fill-foreground text-4xl font-bold"
+                                >
+                                  {chartData[0].visitors.toLocaleString()}
+                                </tspan>
+                                <tspan
+                                  x={viewBox.cx}
+                                  y={(viewBox.cy || 0) + 24}
+                                  className="fill-muted-foreground"
+                                >
+                                  Visitors
+                                </tspan>
+                              </text>
+                            );
+                          }
+                        }}
+                      />
+                    </PolarRadiusAxis>
+                  </RadialBarChart>
+                </ChartContainer>
+                <span className="flex flex-col">
+                  <span>
+                    <p className="font-light">Saved</p>
+                    <p className="font-medium text-xl">{goal.saved}</p>
+                  </span>
+                  <span>
+                    <p className="font-light">Target</p>
+                    <p className="font-medium text-xl">{goal.target}</p>
+                  </span>
+                </span>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <div className="  ">
+                <p>Card Footer</p>
+                <p className="font-light text-sm">{goal.remaining}</p>
+              </div>
+            </CardFooter>
+          </Caard>
         ))}
       </div>
     </div>
   );
 }
+
+export default Goal;

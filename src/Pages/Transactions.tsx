@@ -1,35 +1,31 @@
 import NewIncome from "@/Component/NewIncome";
 import TanTable from "@/Component/TanTable";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import axios from "axios";
 
 import { useTokenStore } from "@/store/tokenstore";
 
-import {
-  useReactTable,
-  getCoreRowModel,
-  flexRender,
-} from "@tanstack/react-table";
+import type { ColumnDef, CellContext } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
+import CustomDialog from "@/Component/CustomDialog";
+import NewExpense from "@/Component/NewExpense";
+
+interface Income {
+  Incomeid: string;
+  IncomeType: string;
+  IncomeAmt: number;
+  Remarks: string;
+  Created_at: string;
+}
 
 export default function SimpleTable() {
-  const [data, setdata] = useState<[]>([]);
-  const [expenses, setExpenses] = useState<[]>([]);
+  const [data, setdata] = useState<Income[]>([]);
+  const [expenses, setExpenses] = useState<Income[]>([]);
   const setIncome = useTokenStore((state) => state.setIncome);
   console.log(data);
 
-  const columns = [
+  const columns: ColumnDef<Income>[] = [
     {
       header: "ID",
       accessorKey: "Incomeid",
@@ -49,7 +45,8 @@ export default function SimpleTable() {
     {
       header: "Date",
       accessorKey: "Created_at",
-      cell: (info) => new Date(info.getValue()).toLocaleDateString(), // format date
+      cell: ({ row }) =>
+        new Date(row.original.Created_at).toISOString().split("T")[0], // format date
     },
   ];
 
@@ -85,33 +82,16 @@ export default function SimpleTable() {
           Add New Expense
         </Button> */}
         {/* income */}
-        <Dialog>
-          <DialogTrigger className="bg-black text-white px-2 py-1 rounded-lg hover:cursor-pointer ">
-            Add New Income
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Add New Income</DialogTitle>
-              <DialogDescription>
-                <NewIncome />
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <CustomDialog dialogTrigger="Add New Income" dialogTitle="Add New Goal">
+          <NewIncome />
+        </CustomDialog>
         {/* expense */}
-        <Dialog>
-          <DialogTrigger className="bg-black text-white px-2 py-1 rounded-lg hover:cursor-pointer ">
-            Add New Expense
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Add New Expense</DialogTitle>
-              <DialogDescription>
-                <NewIncome />
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <CustomDialog
+          dialogTrigger="Add New Expenses"
+          dialogTitle="Add New Goal"
+        >
+          <NewExpense />
+        </CustomDialog>
       </div>
 
       <Tabs defaultValue="account" className="w-full">

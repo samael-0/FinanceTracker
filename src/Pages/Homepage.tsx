@@ -1,14 +1,6 @@
 import Card from "@/Component/Card";
 
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-} from "@/components/ui/carousel";
-
-import {
   Pie,
   PieChart,
   Cell,
@@ -16,6 +8,10 @@ import {
   CartesianGrid,
   XAxis,
   Bar,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const totalGoal = 1000;
@@ -26,45 +22,22 @@ const data = [
   { name: "Remaining", value: totalGoal - completed },
 ];
 
+const barChartData = [
+  { month: "Jul", income: 250, expense: 110 },
+  { month: "Aug", income: 270, expense: 130 },
+  { month: "Sep", income: 320, expense: 150 },
+  { month: "Oct", income: 350, expense: 170 },
+  { month: "Nov", income: 400, expense: 200 },
+  { month: "Dec", income: 450, expense: 220 },
+];
+
 import { FaRegCreditCard } from "react-icons/fa6";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  type ChartConfig,
-} from "@/components/ui/chart";
-import {
-  Caard,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { TrendingUp } from "lucide-react";
+
 import { useEffect, useState } from "react";
 import { useTokenStore } from "@/store/tokenstore";
+import TanTable from "@/Component/TanTable";
 
 export const description = "A multiple bar chart";
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--chart-1)",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
-  },
-} satisfies ChartConfig;
 
 export default function Homepage() {
   const [totalIncome, setTotalIncome] = useState(0);
@@ -85,7 +58,7 @@ export default function Homepage() {
   }, [token]);
 
   return (
-    <div className="  flex flex-col  bg-bgcolor dark:bg-black ">
+    <div className="  flex flex-col h-full bg-bgcolor dark:bg-black ">
       <div className="flex  justify-between  m-2 px-2  ">
         <div className="flex flex-col  p-1 w-full">
           <p className="font-light">Total Balance</p>
@@ -190,77 +163,34 @@ export default function Homepage() {
         </div>
       </div>
 
-      <div className=" flex mx-2  px-3  gap-2 ">
-        <div className=" border-2 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4">
-          <Tabs defaultValue="account" className="w-[400px]">
-            <TabsList>
-              <TabsTrigger value="account">All</TabsTrigger>
-              <TabsTrigger value="revenue">Revenue</TabsTrigger>
-              <TabsTrigger value="expenses">Expenses</TabsTrigger>
-            </TabsList>
-            <TabsContent value="account" className="justify-between">
-              <div className="flex w-full py-1 justify-between h-15 border-b-2 p-7">
-                <div>svg</div>
-                <div className="font-bold">GTR 5</div>
-                <div className="font-bold">$1600</div>
-              </div>
-            </TabsContent>
-            <TabsContent value="revenue">
-              <div className="flex w-full py-1 justify-between h-15 border-b-2 p-7">
-                <div>svg</div>
-                <div className="font-bold">Salary</div>
-                <div className="font-bold">$1600</div>
-              </div>
-            </TabsContent>
-            <TabsContent value="expenses">
-              <div className="flex w-full py-1 justify-between h-15 border-b-2 p-7">
-                <div>svg</div>
-                <div className="font-bold">GTR 5</div>
-                <div className="font-bold">$1600</div>
-              </div>
-            </TabsContent>
-          </Tabs>
+      <div className="flex gap-2 mx-2 px-3 h-full">
+        {/* Left */}
+        <div className="flex-1 border-2 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4">
+          {/* <TanTable data={data} columns={columns} /> */}
         </div>
-        <div className="w-full">
-          <Caard>
-            <CardHeader>
-              <CardTitle>Bar Chart - Multiple</CardTitle>
-              <CardDescription>January - June 2024</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ChartContainer config={chartConfig}>
-                <BarChart accessibilityLayer data={chartData}>
-                  <CartesianGrid vertical={false} />
-                  <XAxis
-                    dataKey="month"
-                    tickLine={false}
-                    tickMargin={10}
-                    axisLine={false}
-                    tickFormatter={(value) => value.slice(0, 3)}
-                  />
-                  <ChartTooltip
-                    cursor={false}
-                    content={<ChartTooltipContent indicator="dashed" />}
-                  />
-                  <Bar
-                    dataKey="desktop"
-                    fill="var(--color-desktop)"
-                    radius={4}
-                  />
-                  <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-                </BarChart>
-              </ChartContainer>
-            </CardContent>
-            <CardFooter className="flex-col items-start gap-2 text-sm">
-              <div className="flex gap-2 leading-none font-medium">
-                Trending up by 5.2% this month{" "}
-                <TrendingUp className="h-4 w-4" />
-              </div>
-              <div className="text-muted-foreground leading-none">
-                Showing total visitors for the last 6 months
-              </div>
-            </CardFooter>
-          </Caard>
+
+        {/* Chart */}
+        <div className="flex-1 border-2 border-red-900 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4 flex flex-col min-h-0">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={barChartData}
+              margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="income" fill="#8884d8" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="expense" fill="#82ca9d" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Right */}
+        <div className="flex-1 border-2 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur
+          nisi in omnis! Sit dignissimos optio sint iste expedita...
         </div>
       </div>
     </div>

@@ -19,6 +19,10 @@ export default function Sidebar() {
       labelName: "Expenses",
     },
     {
+      url: "/Bills",
+      labelName: "Bills",
+    },
+    {
       url: "/goals",
       labelName: "Goals",
     },
