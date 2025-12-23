@@ -15,8 +15,8 @@ export default function Sidebar() {
     //   labelName: "balances",
     // },
     {
-      url: "/Expenses",
-      labelName: "Expenses",
+      url: "/BudgetPlanner",
+      labelName: "Budget Planner",
     },
     {
       url: "/Bills",
