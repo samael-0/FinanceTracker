@@ -75,7 +75,7 @@ export default function SimpleTable() {
   }, []);
 
   return (
-    <div className="bg-bgcolor">
+    <div className="">
       <div className="flex justify-end px-3 py-2  gap-2 ">
         <Toaster />{" "}
         {/* <Button className=" hover:cursor-pointer hover:scale-95">

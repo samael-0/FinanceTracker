@@ -170,7 +170,7 @@ export default function Homepage() {
         </div>
 
         {/* Chart */}
-        <div className="flex-1 border-2 border-red-900 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4 flex flex-col min-h-0">
+        <div className="flex-1 border-2 border-red-900 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4 flex flex-col ">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={barChartData}
