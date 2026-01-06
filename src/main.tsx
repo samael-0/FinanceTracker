@@ -13,6 +13,7 @@ import Transactions from "./Pages/Transactions.tsx";
 import Goal from "./Pages/Goal.tsx";
 import Setting from "./Pages/Setting.tsx";
 import Bills from "./Pages/Bills.tsx";
+import BudgetPlanner from "./Pages/BudgetPlanner.tsx";
 
 const route = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const route = createBrowserRouter([
       { path: "/goals", element: <Goal /> },
       { path: "/settings", element: <Setting /> },
       { path: "/bills", element: <Bills /> },
+      { path: "/BudgetPlanner", element: <BudgetPlanner /> },
     ],
   },
   {

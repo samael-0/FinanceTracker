@@ -86,9 +86,9 @@ export default function Bills() {
   }, []);
 
   return (
-    <div className="bg-bgcolor min-h-screen p-6 space-y-8">
+    <div className=" min-h-screen p-6 space-y-8">
       {/* IPO Section */}
-      <div className="bg-white border rounded-2xl shadow-sm p-5">
+      <div className="bg-white  border rounded-2xl shadow-sm p-5">
         <p className="text-xl font-semibold text-gray-700 mb-4">
           Upcoming IPOs
         </p>
