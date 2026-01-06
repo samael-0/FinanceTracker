@@ -69,11 +69,16 @@ export default function Homepage() {
               <a className="text-blue-500 font-light text-xs">View Details</a>
             }
             content={
-              <div className="  flex h-full  bg-pcolor rounded-xl p-4 justify-between ">
-                <div className="flex flex-col">
-                  <div className="font-light text-xs">Account Type</div>
-                  <div className="font-bold">NIC ASIA</div>
-                  <div className="text-xs font-light">**** **** **** ****</div>
+              <div className="  flex h-full  border-gray-400 bg-bgcolor border-2 rounded-xl p-4 justify-between ">
+                <div className="flex flex-col ">
+                  <div className="font-medium text-xs ">Total Income</div>
+                  <div className="font-medium text-xl   text-green-400">
+                    Rs:2000
+                  </div>
+                  <div className="font-medium text-xs ">Total Expense</div>
+                  <div className="font-medium text-xl text-red-400">
+                    Rs:2000
+                  </div>
                 </div>
                 <div>
                   {" "}
@@ -93,7 +98,7 @@ export default function Homepage() {
             description=<a className="text-blue-500 font-light text-xs">
               View Details
             </a>
-            content=<div className=" flex border-2 rounded-xl items-center justify-between ">
+            content=<div className=" flex border-2 border-gray-400 rounded-xl bg-bgcolor  items-center justify-between ">
               <div className="flex flex-col gap-1 p-2 ">
                 <div className="flex flex-col text-xs">
                   <div className="font-light">Goal Progress</div>
@@ -170,7 +175,7 @@ export default function Homepage() {
         </div>
 
         {/* Chart */}
-        <div className="flex-1 border-2 border-red-900 shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4 flex flex-col min-h-0">
+        <div className="flex-1  shadow-xs bg-white dark:bg-gray-800 rounded-xl p-4 flex flex-col min-h-0">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={barChartData}

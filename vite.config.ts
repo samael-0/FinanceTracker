@@ -11,14 +11,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // server: {
-  //   proxy: {
-  //     "/api": {
-  //       target: "http://localhost:7055",
-  //       changeOrigin: true,
-  //       secure: false,
-  //       // rewrite: (path) => path.replace(/^\/api/, "/api"),
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://6934145d4090fe3bf01ed82a.mockapi.io/",
+        changeOrigin: true,
+        secure: false,
+        // rewrite: (path) => path.replace(/^\/api/, "/api"),
+      },
+    },
+  },
 });

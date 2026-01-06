@@ -12,16 +12,18 @@ type propData = {
   dialogTrigger: string;
   dialogTitle: string;
   children: ReactNode;
+  tailwindcss: ReactNode;
 };
 
 export default function CustomDialog({
   dialogTitle,
   dialogTrigger,
   children,
+  tailwindcss,
 }: propData) {
   return (
     <Dialog>
-      <DialogTrigger className="border-2 px-1 rounded-sm bg-black text-white">
+      <DialogTrigger className={`${tailwindcss}`}>
         {dialogTrigger}
       </DialogTrigger>
       <DialogContent className="w-[25rem]">

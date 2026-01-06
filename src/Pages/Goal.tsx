@@ -1,3 +1,6 @@
+import CustomDialog from "@/Component/CustomDialog";
+import NewIncome from "@/Component/NewIncome";
+import { Button } from "@/components/ui/button";
 import {
   Caard,
   CardAction,
@@ -36,7 +39,7 @@ const chartConfig = {
   },
   safari: {
     label: "Safari",
-    color: "var(--chart-2)",
+    color: "black",
   },
 } satisfies ChartConfig;
 const style = {
@@ -59,15 +62,27 @@ const data: goalData[] = [
     target: "$10000",
     remaining: "$3500",
   },
+  {
+    fundName: "Vaccation to Europe",
+    saved: "$6500",
+    target: "$10000",
+    remaining: "$3500",
+  },
+  {
+    fundName: "Vaccation to Europe",
+    saved: "$6500",
+    target: "$10000",
+    remaining: "$3500",
+  },
 ];
 
 function Goal() {
   return (
-    <div className="flex flex-col bg-bgcolor h-full  px-6 py-2 border-7 ">
+    <div className="flex flex-col bg-bgcolor   border-7 ">
       <h1 className="font-semibold text-3xl">Financial Goal</h1>
-      <div className=" bg-white shadow-xs flex flex-col   my-2 px-2 py-2 gap-5 rounded-xl">
+      <div className=" bg-white shadow-xs flex flex-col   my-2 px-2 py-2 gap-5 rounded-xl border-2">
         <p>Overall Progress</p>
-        <div className="flex justify-between">
+        <div className="flex justify-between ">
           <span>
             <p className="font-semimedium text-3xl">$1400</p>
             <p className="font-extralight text-sm">of $3200</p>
@@ -82,9 +97,9 @@ function Goal() {
           <Progress className="w-full h-4" value={33} />
         </div>
       </div>
-      <div className="flex bg-white p-2  rounded-xl border-2 border-red-900">
+      <div className="flex bg-white p-2 gap-7 flex-wrap rounded-xl border-2">
         {data.map((goal) => (
-          <Caard className="">
+          <Caard className="gap-1">
             <CardHeader>
               <CardTitle>{goal.fundName}</CardTitle>
               <CardDescription>Card Description</CardDescription>
@@ -94,7 +109,7 @@ function Goal() {
               <div className="flex gap-4 items-center">
                 <ChartContainer
                   config={chartConfig}
-                  className="mx-auto aspect-square max-h-[250px] h-full"
+                  className="mx-auto aspect-square max-h-[250px] h-[250px]"
                 >
                   <RadialBarChart
                     data={chartData}
@@ -165,9 +180,19 @@ function Goal() {
               </div>
             </CardContent>
             <CardFooter>
-              <div className="  ">
-                <p>Card Footer</p>
-                <p className="font-light text-sm">{goal.remaining}</p>
+              <div className="flex flex-col w-full gap-2">
+                <div className=" flex justify-between w-full ">
+                  <p>Card Footer</p>
+                  <p className="font-light text-sm">{goal.remaining}</p>
+                </div>
+
+                <CustomDialog
+                  dialogTrigger="Add New Income"
+                  dialogTitle="Add New Goal"
+                  tailwindcss="border-2 px-1 py-1 rounded-sm bg-bgcolor text-black"
+                >
+                  <NewIncome />
+                </CustomDialog>
               </div>
             </CardFooter>
           </Caard>

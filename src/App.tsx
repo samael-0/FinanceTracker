@@ -12,7 +12,7 @@ function App() {
         <div className=" flex flex-col w-full">
           <Header />
 
-          <div className="flex-1 overflow-y-auto no-scrollbar ">
+          <div className="flex-1 overflow-y-auto no-scrollbar px-4 bg-bgcolor ">
             <Outlet />
           </div>
         </div>
